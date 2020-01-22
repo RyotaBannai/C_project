@@ -1,5 +1,6 @@
 /*
  Use postfixd increment operator in while statement
+ 後置は変化前の値、前置は変化後の値
 */
 #include <stdio.h>
 int main(void){
@@ -11,6 +12,15 @@ int main(void){
 		}
 		putchar('\n');
 	}
+	/*
+		
+	*/
+	i = 0;
+	do{
+		++i;
+	}while(i<5);
+	while(i>=0)
+		printf("%d\n", i--);
 	
 	return 0;	
 }

@@ -12,10 +12,8 @@ int main(void){
 		}
 		putchar('\n');
 	}
-	/*
-		
-	*/
-	i = 0;
+	/* while for do or while for while? -> use Compound Statement*/
+	i=0;
 	do{
 		++i;
 	}while(i<5);

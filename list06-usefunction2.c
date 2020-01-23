@@ -22,8 +22,12 @@ int rev_int(int num){
 	
 	return temp;
 }
+void hello(void){
+	puts("今日わ.");
+}
 
 int main(void){
+	hello();
 	int num = scan_pint();
 	printf("入力した数値を反転させました: %d\n", rev_int(num));
 }

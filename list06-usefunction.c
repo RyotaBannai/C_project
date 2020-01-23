@@ -16,6 +16,6 @@ int diff(int a, int b){
 
 int main(void){
 	int n1=2, n2=3;
-	printf("二乗誤差は %d　です。\n", diff(square(n1), square(n2)));
-	printf("４乗誤差は %d　です。\n", diff(pow4(n1), pow4(n2)));
+	printf("二乗差は %d　です。\n", diff(square(n1), square(n2)));
+	printf("４乗差は %d　です。\n", diff(pow4(n1), pow4(n2)));
 }

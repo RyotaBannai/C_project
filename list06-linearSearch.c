@@ -9,14 +9,14 @@ int lSearch(int v[], int key, int n){
 	int i;
 	for(i=0; v[i] != key; i++) // Loop has no procedure to work
 		;
-	return (i > n) ? i : FAILED;
+	return (i < n) ? i : FAILED;
 }
 
 int main(void){
 	int i, ky, idx;
 	int vx[NUMBER + 1];
 	
-	printf(NUMBER);
+	printf("%d",NUMBER);
 	printf("回文字を入力してください。\n");
 	for(i=0; i< NUMBER; i++){
 		scanf("%d", &vx[i]);

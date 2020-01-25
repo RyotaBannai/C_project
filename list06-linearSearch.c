@@ -2,8 +2,8 @@
 	線形探索・番兵法
 */
 #include <stdio.h>
-#define NUMBER	5 
-#define FAILED	-1
+#define NUMBER	5 /*the number of elements*/
+#define FAILED	-1 /*traverse fails*/
 
 int lSearch(int v[], int key, int n){
 	int i;

@@ -1,5 +1,5 @@
 /*
-Matrix outer -> x*y * y*x -> y*y
+Matrix outer -> x*y * y*x -> x*x
 */
 
 #include<stdio.h>

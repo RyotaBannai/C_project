@@ -6,10 +6,10 @@
 int x=100; // file scope
 
 void print_x(void){
-	printf("%3d",x);
+	printf("in print_x function: %3d\n",x);
 }
 int main(void){
-	int i, x=1; // main block
+	int i, x=x; // main block
 	print_x();
 	printf("%3d",x);
 	

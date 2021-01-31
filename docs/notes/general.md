@@ -1,3 +1,7 @@
+### References
+
+- [メモリアロケーション](http://www.nct9.ne.jp/m_hiroi/linux/clang08.html)
+
 ### メモリアロケーション (メモリ確保, メモリ割り当て)
 
 - `メモリ割り当て`の種別

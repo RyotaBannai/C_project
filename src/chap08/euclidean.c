@@ -22,7 +22,7 @@ int algo(int a, int b)
 
   int rest;
   for (rest = bigger; rest > smaller; rest -= smaller)
-    continue;
+    ;
 
   printf("rest: %d, smaller: %d\n", rest, smaller);
   if (rest == smaller)

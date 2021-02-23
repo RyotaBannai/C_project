@@ -1,8 +1,11 @@
+/* header files */
 #include <stdio.h>
 #include <stdlib.h> // for malloc
 #include <math.h>
-#include <stdlib.h>
 #include "chap08.h"
+
+/* macros */
+#define N 256
 
 /*
 https://www.fine.cs.kobe-u.ac.jp/members/kamada/old/proron/index.html#headers
@@ -31,6 +34,15 @@ void warmups()
   // snprintf tells you length if you call it with NULL, 0 as first parameters:
   int length_from_chars = snprintf(NULL, 0, "%s", chars);
   int length_from_charss = snprintf(NULL, 0, "%s", charss);
+  /*
+    Concerning the return value of snprintf(), 'SUSv2' and 'C99' contradict
+    each other: when snprintf() is called with 'size=0' then 'SUSv2'
+    stipulates an unspecified return value less than 1, while 'C99' allows
+    str to be NULL in this case, and gives the return value (as always)
+    as the number of characters that would have been written in case the
+    output string has been large enough. 
+    https://man7.org/linux/man-pages/man3/snprintf.3.html
+  */
   printf("%d\n", length_from_chars);  // 2
   printf("%d\n", length_from_charss); // 3
 
@@ -38,6 +50,14 @@ void warmups()
   char str[length_from_charss];
   sprintf(str, "%s", charss);
   printf("%s\n", str);
+
+  // more snprintf
+  char s[N] = {'\0'}; // 初回はナルを入れておくと良い
+  char name[] = "Henrie";
+  char sex[] = "men";
+  int age = 20;
+  snprintf(s, N, "Mr. %s is %s and his age is %d", name, sex, age);
+  printf("the result is as char*: %s\n", s);
 }
 
 void allocate_character_from_int()
@@ -92,20 +112,22 @@ void show_char()
   printf("%c\n", c); // '8'
 
   // cast doesn't work!
-  int i = 9;
-  char c = (char)i;
-  printf("%c", c); // '\t' ('9'に変換されるわけではない)
+  int i_ = 9;
+  char c_ = (char)i;
+  printf("%c", c_); // '\t' ('9'に変換されるわけではない)
 
   // https://marycore.jp/prog/c-lang/convert-number-to-char/
 }
 
 int main(int argc, char const *argv[])
 {
-  // warmups();
-  show_char();
+  warmups();
+  // show_char();
   // allocate_character_from_int();
   // experiments();
 }
 
 // atoi: convert string to int as much as it can
 // https://www.educative.io/edpresso/how-to-convert-a-string-to-an-integer-in-c
+// C言語関数辞典
+// http://www.c-tipsref.com/reference/stdio/snprintf.html

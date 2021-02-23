@@ -52,7 +52,7 @@ void warmups()
   printf("%s\n", str);
 
   // more snprintf
-  char s[N] = {'\0'}; // 初回はナルを入れておくと良い
+  char s[N] = {'\0'}; // 初回はナルを入れておくと良い。 char s[N] = ""; でも良い。（ナル文字は、値が 0 の文字で、８進拡張表記で表記すると \0 , 単なる整数定数だと 0）
   char name[] = "Henrie";
   char sex[] = "men";
   int age = 20;
@@ -119,12 +119,18 @@ void show_char()
   // https://marycore.jp/prog/c-lang/convert-number-to-char/
 }
 
+void book_codes()
+{
+  printf("%s", "ABC\0DEF"); // \0 が終端だとみなされ、DEF は表示されない.
+}
+
 int main(int argc, char const *argv[])
 {
-  warmups();
+  // warmups();
   // show_char();
   // allocate_character_from_int();
   // experiments();
+  book_codes();
 }
 
 // atoi: convert string to int as much as it can

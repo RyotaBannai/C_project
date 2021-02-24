@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char const *argv[])
+void experiment()
 {
   int n;
   double x;
@@ -20,4 +20,15 @@ int main(int argc, char const *argv[])
   {
     printf("&b[%d] = %p p+%d = %p\n", i, &b[i], i, p + i); // + 1 で次のアドレスを参照できるのは、pointer は配列の型情報も保持しているため.
   }
+}
+int main(int argc, char const *argv[])
+{
+  // experiment();
+
+  char *p = "123";
+  printf("p = \"%s\"\n", p);
+  p = "456";
+  printf("p = \"\%s\"\n", p);
+  p = "456" + 1; // 文字列リテラルの先頭を入れる代わりに、 + 1 をすることでその次のアドレスが代入される。よって "56" が入る
+  printf("p = \"\%s\"\n", p);
 }

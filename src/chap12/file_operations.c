@@ -57,8 +57,8 @@ void read_from_file()
     double h, w; // long float
     double sum_h = 0.0;
     double sum_w = 0.0;
-    char name[100]; // do not use char *name
-    while (fscanf(fp, "%s%lf%lf", name, &h, &w) == 3)
+    char name[100];                                   // do not use char *name
+    while (fscanf(fp, "%s%lf%lf", name, &h, &w) == 3) // スペースを入れなくても良い
     {
       number_of_studs++;
       sum_h += h;
@@ -70,8 +70,50 @@ void read_from_file()
     fclose(fp);
   }
 }
+
+void rw_binary()
+{
+  /*
+    テキストファイル：文字列が'数値の桁数に依存'する (345 -> 3 bytes, 3456 -> 4 bytes. 345 は '3', '4', '5' の文字（テキスト）として出力されるので、'3' = 1 char = 1 byte となる)
+    バイナリファイル：文字列（バイト数）が'数値の桁数に依存'しない (345, 3456 いずれも sizeof(int) で一定. int は基本的に 2 bytes)
+  */
+  FILE *fp;
+  char *file_name = "pi";
+  if ((fp = fopen(file_name, "wb")) == NULL)
+  {
+    printf("couldn't open file %s\n", file_name);
+  }
+  else
+  {
+    double pi = 3.14159265358979323846;
+    printf("%-15s%23.21f\n", "pi is ", pi);
+    fwrite(&pi, sizeof(double), 1, fp);
+    fclose(fp);
+  }
+  // check if data doesn't decay.
+  if ((fp = fopen(file_name, "rb")) == NULL)
+  {
+    printf("couldn't open file %s\n", file_name);
+  }
+  else
+  {
+    double read_pi;
+    fread(&read_pi, sizeof(double), 1, fp);
+    printf("%-15s%23.21f\n", "read pi is ", read_pi);
+    fclose(fp);
+  }
+}
+
+void test()
+{
+  char test[100];
+  scanf("%s", test); // 改行文字を空読みしなくても除去される.
+  printf("%s", test);
+}
+
 int main(int argc, char const *argv[])
 {
-  read_from_file();
+  // read_from_file();
+  // rw_binary();
   return 0;
 }

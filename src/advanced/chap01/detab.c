@@ -1,7 +1,7 @@
 /*
   ファイルのタブを半角スペースに置き換える
   タブはデフォルトで 4 つの半角スペースに置き換えるが、引数 -t で変更可能
-  $ detab -t8 test.c 
+  $ ./a.out -t4 sample.c
 
   * vscode など保存時に自動フォーマットする機能がある場合, \t は自動で半角スペースに置き換わる '	' -> '..'
   * to stop this, cmd+, and search for 'format' and uncheck 'Format on save' option.

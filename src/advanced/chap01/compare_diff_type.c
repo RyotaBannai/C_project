@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include <limits.h>
 /*
   src/general/bits.c
 */
@@ -42,5 +42,25 @@ int main(int argc, char const *argv[])
 
   print_bits(b);           // 00000000000000000000000000000001
   print_bits((unsigned)a); // 11111111111111111111111111111111 2's complement representation.
+
+  //
+  int x;
+  signed char ch = CHAR_MAX;
+  printf("%d\n", ch);
+  x = ch + 1;
+  printf("%d\n", x);
+  x = ++ch;
+  printf("%d\n", x);
+  x = ++ch;
+  printf("%d\n", x);
+#if 0
+  /*
+  results:...
+  127
+  128
+  -128
+  -127
+  */
+#endif
   return 0;
 }

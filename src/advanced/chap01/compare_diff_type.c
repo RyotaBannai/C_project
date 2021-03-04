@@ -43,6 +43,11 @@ int main(int argc, char const *argv[])
   print_bits(b);           // 00000000000000000000000000000001
   print_bits((unsigned)a); // 11111111111111111111111111111111 2's complement representation.
 
+  printf("%d\n", a);                              // this is fine
+  printf("%d\n", (unsigned)a);                    // even tho it's casted still shows -1
+  printf("%u\n", (unsigned)a);                    // but %u reveals the truth. -1 + (1 + Y_MAX)
+  printf("the unsigned limit is %u\n", UINT_MAX); // 4294967295 that's why result1 is false
+
   //
   int x;
   signed char ch = CHAR_MAX;

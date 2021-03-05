@@ -129,3 +129,22 @@ while (1) {
 
 - `配列による文字列`: `char str[] = "ABC";`、`ポインタによる文字列`: `char *str = "ABC` どちらも同じような性質であるが、配列による文字列は占有するバイト数は sizeof(str) == 4 ("ABC" + '\0') に対し、ポインタによる文字列は、sizeof(str) == 4 + pointer 分(char 型であればその配列の先頭になるので 1)
 - `文字列リテラル`は`静的記憶域期間`を持つため、pointer からの参照がなくなっても記憶域から自動的に破棄される、と言ったことは**ない**。
+
+- c++ でも `call by reference` がサポートされている
+- 呼び出し側では、`&` 関数に渡すときにはアドレス演算子（`address operator`/ `参照演算子`）を使わずにそのまま渡すが、呼び出される側は `Type&` のように `&` を型の後ろに付け加える。（c の場合は変数の前にアスタリスク `*`（`indirection operator`/ `間接演算子`）をつける ）
+
+```c++
+#include <iostream>
+
+using namespace std;
+void increment(int& no){
+  ++no;
+}
+
+int main(void){
+  int x = 5;
+  increment(x);
+  coun << "the x value is" << x << '\n';
+  return 0;
+}
+```

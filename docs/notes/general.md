@@ -159,3 +159,9 @@ int main(void){
   2. `*(b+i)` is equivalent to `b[i]`, the expression as a whole can be seen as:
   3. `*(b[i]+0)`, and hence: `b[i][0]`
 - `*(a+b) is identical to a[b]`(2.), and `*a is equivalent to *(a+0)`(1.)
+
+#### string literal について
+
+- c lang では `string 型`はなく文字列を表現するときは、`char 型の配列`（または `char *`）であるため、char `*s = 'A'` とすると、先頭の文字を書き換えることができる。これに対して、
+- c++ では `const char 型の配列`になるため、書き換えが禁止されている。
+- golang でも `string 型`は immutable であるため書き換えが不可であり、書き換える場合は一度 `rune 型`に変換してからインデックスを指定し再代入することになる（それから `string 型`で再キャストする）。（`my_runes := []rune(my_string)` -> `my_runes[0] = 'A'` -> `string(my_runes)`）

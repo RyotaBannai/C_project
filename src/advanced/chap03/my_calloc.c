@@ -9,7 +9,7 @@ int main(int argc, char const *argv[])
   int(*x)[NUMBER_OF_ELEMS];
   int n = 3;
 
-  x = calloc(n * NUMBER_OF_ELEMS, sizeof(int));
+  x = calloc(n * NUMBER_OF_ELEMS, sizeof(int)); // c では明示的にキャストする必要はない. (int *)calloc(...)
   int(*temp)[NUMBER_OF_ELEMS] = x;
   if (x == NULL)
   {
@@ -25,6 +25,7 @@ int main(int argc, char const *argv[])
 
   for (int i = 0; i < n * NUMBER_OF_ELEMS; i++)
   {
+
     printf("value is %d, %p \n", (*temp)[i], &(*temp)[i]);
   }
   return 0;

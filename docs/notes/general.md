@@ -149,7 +149,7 @@ int main(void){
 }
 ```
 
-- `void pointer`: NULL pointer とは意味が違って、c lang では、pointer の generic 意味で使われる。例えば、`calloc`, `malloc`, `realloc` では特定の型への pointer に依存するとまずいので　 void pointer （void \*） とするとこでどの型のポインターでも受け付ける、または、返却するとこができるようになっている。
+- `void pointer`: NULL pointer とは意味が違って、c lang では、pointer の generic 意味で使われる。例えば、`calloc`, `malloc`, `realloc` では特定の型への pointer に依存するとまずいので　 void pointer （void \*） とするとこでどの型のポインターでも受け付ける、または、返却するとこができるようになっている。(c++ では、明示的にキャストしなければならない。これは、ポインタをキャストすることによって値が変化してしまう危険性があるため。)
 - `calloc`, `malloc` が確保するのは、特定の型のオブジェクトではなく、単なる記憶行きの "かたまり"（`raw memory`）である. (c++ でのオブジェクトの生成と解放は演算子で行えるようになっている。`int* x = new int; # 生成` `delete x; # 解放`)
 
 #### \* interpretation.

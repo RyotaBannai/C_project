@@ -151,3 +151,11 @@ int main(void){
 
 - `void pointer`: NULL pointer とは意味が違って、c lang では、pointer の generic 意味で使われる。例えば、`calloc`, `malloc`, `realloc` では特定の型への pointer に依存するとまずいので　 void pointer （void \*） とするとこでどの型のポインターでも受け付ける、または、返却するとこができるようになっている。
 - `calloc`, `malloc` が確保するのは、特定の型のオブジェクトではなく、単なる記憶行きの "かたまり"（`raw memory`）である. (c++ でのオブジェクトの生成と解放は演算子で行えるようになっている。`int* x = new int; # 生成` `delete x; # 解放`)
+
+#### \* interpretation.
+
+- `**(b+i)` evaluates to: `b[i][0]` because...
+  1. `**(b+i)` is equivalent to: `*(*(b+i)+0)`, and since
+  2. `*(b+i)` is equivalent to `b[i]`, the expression as a whole can be seen as:
+  3. `*(b[i]+0)`, and hence: `b[i][0]`
+- `*(a+b) is identical to a[b]`(2.), and `*a is equivalent to *(a+0)`(1.)

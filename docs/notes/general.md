@@ -180,3 +180,37 @@ int main(void){
     - 改行文字の前に空白文字が**無い** (改行文字の直前の空白文字を無視するかどうかは処理系依存なため)
     - 最後の文字が改行もである
 - バイナリストリームは、同一の処理系の元で書き出したバイナリデータを読み込むときは一致していなければならない、という制限がある。ただし、ストリームの最後になる文字を処理系定義の個数だけ付加することは許されている。
+
+#### byte order
+
+- `network byte order`: 4 バイト長の IP アドレスと、2 バイト長のポート番号は `big endian` でその数値を記述しなくてはいけない決まり。これはたとえ同じ種類の マシン間で通信する場合でも従わなくてはいけない。
+- 例えば IP アドレス `"127.0.0.1"` を long 型変数に設定するには `big endian` のマシンでは
+
+```c++
+unsigned long ip = 0x7f000001;
+```
+
+とするが、`little endian` のマシンでは
+
+```c++
+unsigned long ip = 0x0100007f;
+```
+
+とする。しかしマシンによって整数定数の表現が変わるのはプログラマにとって大変面倒であるため、次のようにする：
+
+```c++
+unsigned long ip = htonl(0x7f000001);
+```
+
+`htonl` 関数は long 型の値を host でのメモリ扱い方法を network の世界での方法 (network byte order = big endian) に、必要があれば変換する。 なので、これでどのマシンでも自動的に big endian として 変数に値を代入できる。
+同様に short 型の値であるポート番号は `htons` 関数で big endian に統一する。
+
+```c++
+unsigned short port = htons(80);
+```
+
+逆に network order を host order に戻す `ntohl`, `ntohs` 関数もある。
+
+```c++
+printf("IP = %08x PORT=%u", ntohl(ip), ntohs(port) );
+```

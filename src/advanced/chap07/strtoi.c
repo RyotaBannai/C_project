@@ -66,8 +66,9 @@ int main(void)
     2 オーバーフローなどのエラー
   */
   int num, err;
-  char buffer[100] = "10000";
-  // char buffer[100] = "1000000000000000"; // overflow so shows  -2147483648
+  // char buffer[100] = "10000";             // not overflow so shows  10000
+  // char buffer[100] = "1000000000000000";  // overflow, so shows  2147483647
+  char buffer[100] = "-1000000000000000"; // overflow, so shows  -2147483648
   num = strtoi(buffer, &err);
   printf("convert str to int: %d\n", num);
   printf("err: %d\n", err);

@@ -79,7 +79,7 @@ int StackIsFull(const Stack *s)
   return s->ptr == s->max;
 }
 
-int StackClear(Stack *s)
+void StackClear(Stack *s)
 {
   // clears Stack
   s->ptr = 0;
@@ -88,33 +88,36 @@ int StackClear(Stack *s)
 int main(void)
 {
   Stack stk;
-  if (StackAlloc(&stk) == -1)
+  if (StackAlloc(&stk, 5) == -1)
   {
     printf("Fails to allocate Stack\n");
   }
 
   while (1)
   {
-    int opt, elem;
+    int opt, num;
+    char elem[100];
     printf("The number of current data size: %d\nThe stack capacity is: %d\n", StackSize(&stk), StackCap(&stk));
-    printf("1. push, 2. pop, 0. end:\n");
+    printf("1. push, 2. pop, 0. end: ");
 
-    scanf("%d", &opt);
+    scanf("%d", &opt); // infinite loop with str input
     if (opt == 0)
       break;
 
     switch (opt)
     {
     case 1:
-      printf("data is:", scanf("%d", &elem));
-      if (StackPush(&s, elem) == -1)
+      scanf("%s", elem);
+      num = atoi(elem);
+      printf("data is: %d\n", num);
+      if (StackPush(&stk, num) == -1)
         printf("failed to push..\n");
       break;
     case 2:
-      if (StackPop(&s, elem) == -1)
+      if (StackPop(&stk, &num) == -1)
         printf("failed to pop..\n");
       else
-        printf("the value is %d\n", elem);
+        printf("the value is %d\n", num);
       break;
     }
   }

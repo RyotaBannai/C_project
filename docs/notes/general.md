@@ -214,3 +214,5 @@ unsigned short port = htons(80);
 ```c++
 printf("IP = %08x PORT=%u", ntohl(ip), ntohs(port) );
 ```
+
+- [参考](http://cms.phys.s.u-tokyo.ac.jp/~naoki/CIPINTRO/NETWORK/endian.html)

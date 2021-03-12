@@ -2,10 +2,10 @@
 
 #define QUEUE_SIZE 10;
 
-char queue[QUEUE_SIZE];
-int queue_size = 0;
-int front = 0;
-int rear = 0;
+static char queue[QUEUE_SIZE];
+static int queue_size = 0;
+static int front = 0;
+static int rear = 0;
 
 int enqueue(int ch)
 {

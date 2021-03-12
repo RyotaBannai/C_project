@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <ctype.h>
-
-int enqueue(void);
-int dequeue(int);
+#include "enqueue.h"
 
 int get_num(void)
 {

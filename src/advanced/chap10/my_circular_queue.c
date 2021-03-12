@@ -10,7 +10,7 @@ int rear = 0;
 int enqueue(int ch)
 {
   if (queue_size == QUEUE_SIZE) // 以上入らない
-    return 0;                   // fail
+    return EOF;                 // fail
   else
   {
     queue_size++;

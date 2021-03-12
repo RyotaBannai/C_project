@@ -1,7 +1,7 @@
-#ifndef __DEQUEUE
-#define __DEQUEUE
+#ifndef __ENQUEUE
+#define __ENQUEUE
 
-int enqueue(void);
-int dequeue(int __ch);
+int enqueue(int __ch);
+int dequeue(void);
 
 #endif

@@ -1,11 +1,14 @@
 #include <stdio.h>
-#include "enqueue.h"
 #include "_enqueue.h"
+#include "enqueue.h"
+/*
+  ライブラリの実体を定義する'実現ファイル'では、ライブラリの内部用の'内部ヘッダ'と、ユーザー向けの'公開ヘッダ'の両方を include する
+*/
 
-extern char __queue[__QUEUE_SIZE];
-extern int __queue_size;
-extern int __front;
-extern int __rear;
+char __queue[__QUEUE_SIZE];
+int __queue_size;
+int __front;
+int __rear;
 
 int dequeue(void)
 {
@@ -15,7 +18,7 @@ int dequeue(void)
   {
     int temp;
     __queue_size--;
-    temp = queue[front++];
+    temp = __queue[__front++];
     if (__front == __QUEUE_SIZE)
       __front = 0;
     return temp;

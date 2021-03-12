@@ -2,6 +2,12 @@
 #include <ctype.h>
 #include "enqueue.h"
 
+/*
+  compile ->
+  $gcc dequeue.c enqueue.c char_getter.c
+
+  ・このプログラムは queue size == 1 あれば機能する
+*/
 int get_num(void)
 {
   int c = 0;
@@ -30,13 +36,13 @@ int get_non_num(void)
   if (ch != EOF)
     enqueue(ch); // 4 は戻す
 
-  putchar("\n");
+  putchar('\n');
   return ch;
 }
 
 int main(void)
 {
-  while (getnum() != EOF)
+  while (get_num() != EOF)
     if (get_non_num() == EOF)
       break;
 

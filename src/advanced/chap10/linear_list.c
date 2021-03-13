@@ -51,6 +51,7 @@ void AppendNode(Node **head, Node new_node)
     PrependNode(head, new_node);
   else
   {
+    // explore until the last Node.
     Node *ptr = *head;
     while (ptr->next != NULL)
       ptr = ptr->next;

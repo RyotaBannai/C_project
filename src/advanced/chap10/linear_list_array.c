@@ -7,6 +7,8 @@
 #define Head (list->head)
 #define Second (list->n[Head].next)
 #define Next(x) (list->n[(x)].next)
+#define D_HEAD (list->d_head)
+#define D_Next(x) (list->n[(x)].d_next)
 
 typedef int Index;
 typedef enum
@@ -42,29 +44,29 @@ void SetNode(Node *n, Node nn, Index next_idx)
 
 int GetIndex(List *list)
 {
-  if (list->d_head == Null)
+  if (D_HEAD == Null)
     return ++(list->max);
   else
   {
     // delete リストの先頭を取り出して、先頭にその次の record を入れる
-    Index rec = list->d_head;
-    list->d_head = list->n[rec].next;
-    return rec;
+    Index idx = D_HEAD;
+    D_HEAD = list->n[idx].next;
+    return idx;
   }
 }
 
 void DeleteIndex(List *list, int idx)
 {
   // 削除リストが空の場合でも idx を削除された record  として扱う
-  if (list->d_head == Null)
+  if (D_HEAD == Null)
   {
-    list->d_head = idx;
-    list->n[idx].d_next = Null;
+    D_HEAD = idx;
+    D_Next(idx) = Null;
   }
   else
   {
-    list->n[idx].d_next = list->d_head;
-    list->d_head = idx;
+    D_Next(idx) = D_HEAD;
+    D_HEAD = idx;
   }
 }
 
@@ -116,7 +118,7 @@ void PrintList(List *list)
 void InitList(List *list, int size)
 {
   list->n = calloc(size, sizeof(Node));
-  list->head = list->max = list->d_head = Null; // 初期化
+  Head = list->max = D_HEAD = Null; // 初期化
 }
 
 void TermList(List *list)

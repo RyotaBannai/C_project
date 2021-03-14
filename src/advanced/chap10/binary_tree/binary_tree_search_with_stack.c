@@ -30,25 +30,21 @@ void Error(void)
   puts("ERROR");
 }
 
-BinNode *AllocNode(void)
-{
-  return calloc(1, sizeof(BinNode));
-}
-
 BinNode *InsertNode(BinNode *p, BinNode nn)
 {
   int cond;
   if (p == NULL)
   {
-    p = AllocNode();
+    p = malloc(sizeof(BinNode));
     strcpy(p->name, nn.name);
     p->right = p->left = NULL;
   }
-  else if ((cond = strcmp(nn.name, p->name)) == 0)
+
+  if ((cond = strcmp(nn.name, p->name)) == 0)
     printf("name '%s' already exists.", nn.name);
   else if (cond < 0)
     p->left = InsertNode(p->left, nn);
-  else
+  else if (cond > 0)
     p->right = InsertNode(p->right, nn);
   return p;
 }
@@ -71,8 +67,8 @@ void SearchNode(BinNode *root, BinNode nn)
           ptr--;
           break;
         }
-        // else
-        p = (cond < 0) ? p->left : p->right;
+        else
+          p = (cond < 0) ? p->left : p->right;
       }
       else
       {

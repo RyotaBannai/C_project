@@ -161,7 +161,6 @@ int main(void)
 
   do
   {
-    Node n;
     switch (menu = SelectMenu())
     {
     case Prepend:

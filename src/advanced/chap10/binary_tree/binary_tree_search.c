@@ -27,7 +27,7 @@ BinNode *AllocNode(void)
 BinNode *InsertNode(BinNode *p, BinNode nn)
 {
   int cond;
-  if (p == NULL)
+  if (p == NULL) // NULL == 0x0
   {
     p = AllocNode();
     strcpy(p->name, nn.name);
@@ -105,7 +105,9 @@ int main(void)
     switch (menu = SelectMenu())
     {
     case Insert:
-      InsertNode(root, Read("Insert"));
+      // 初回が NULL だと、referece で書き換えることができないため、
+      // return 値として受け取る必要がある
+      root = InsertNode(root, Read("Insert"));
       break;
     case Search:
       SearchNode(root, Read("Search"));
